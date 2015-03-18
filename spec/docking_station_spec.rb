@@ -3,10 +3,11 @@ require 'docking_station'
 describe DockingStation do
   it { is_expected.to respond_to :release_bike }
   # UNSURE WHETHER THIS SHOULD BE COMMENTED OUT
-  # it 'releases bikes that are not broken' do
-  #   bike = subject.release_bike
-  #   expect(bike).not_to be_broken
-  # end
+  it 'releases bikes that are not broken' do
+    subject.dock double :bike, broken?: false
+    bike = subject.release_bike
+    expect(bike).not_to be_broken
+  end
 
   describe DockingStation do
     it 'can dock a bike' do
